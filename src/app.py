@@ -1,13 +1,13 @@
 from flask import Flask, jsonify, request, json
 app = Flask(__name__)
 
-todos = [
-    { "label": "My first task", "done": False },
-    { "label": "My second task", "done": False }
+todos =[
+    {"label": "My first task", "done": False},
+    {"label": "My second task","done": False}
 ]
 
 data = [
-    { "done": "true", "label": "Sample Todo 1"}
+    { "done": True, "label": "Sample Todo 1"}
 ]
 
 @app.route('/todos', methods=['GET'])
@@ -18,8 +18,8 @@ def hello_world():
 def add_new_todo():
     request_body = request.data
     decoded_object = json.loads(request_body)
-    print("Incoming request with the following body", request_body)
-    return jsonify(todos)
+    p= decoded_object.append(todos)
+    return jsonify(p)
 
 
 if __name__ == '__main__':
