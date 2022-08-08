@@ -13,7 +13,6 @@ data = [
 @app.route('/todos', methods=['GET'])
 def hello_world():
     return jsonify(todos)
-    #return '<h1>Hello!</h1>'
 
 @app.route('/todos', methods=['POST'])
 def add_new_todo():
@@ -24,12 +23,7 @@ def add_new_todo():
 
 @app.route('/todos/<int:position>', methods=['DELETE'])
 def delete_todo(position):
-    #print("This is the position to delete: ",position)
-    #todos = list(position)
-    #db.session.delete(todos)
-    todos.remove(position)
-    #db.session.delete(todos)
-    #db.session.commit()
+    del todos[position]
     return jsonify(todos)
 
 
