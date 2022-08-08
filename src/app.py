@@ -17,9 +17,11 @@ def hello_world():
 @app.route('/todos', methods=['POST'])
 def add_new_todo():
     request_body = request.data
-    decoded_object = json.loads(request_body)
-    p= decoded_object.append(todos)
-    return jsonify(p)
+    print("Incoming request with the following body", request_body)
+    return 'Response for the POST todo'
+    #decoded_object = json.loads(request_body)
+    #p= decoded_object.append(todos)
+    #return jsonify(p)
 
 
 if __name__ == '__main__':
