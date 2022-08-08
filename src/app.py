@@ -13,15 +13,24 @@ data = [
 @app.route('/todos', methods=['GET'])
 def hello_world():
     return jsonify(todos)
+    #return '<h1>Hello!</h1>'
 
 @app.route('/todos', methods=['POST'])
 def add_new_todo():
     request_body = request.data
-    print("Incoming request with the following body", request_body)
-    return 'Response for the POST todo'
-    #decoded_object = json.loads(request_body)
-    #p= decoded_object.append(todos)
-    #return jsonify(p)
+    decoded_object = json.loads(request_body)
+    todos.append(decoded_object)
+    return jsonify(todos)
+
+@app.route('/todos/<int:position>', methods=['DELETE'])
+def delete_todo(position):
+    #print("This is the position to delete: ",position)
+    #todos = list(position)
+    #db.session.delete(todos)
+    todos.remove(position)
+    #db.session.delete(todos)
+    #db.session.commit()
+    return jsonify(todos)
 
 
 if __name__ == '__main__':
